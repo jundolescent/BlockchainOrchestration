@@ -7,6 +7,11 @@ n_orderer = int(sys.argv[1])
 n_org = int(sys.argv[2])
 n_peer = int(sys.argv[3])
 
+##### location of peer node #################
+#n_server = int(sys.argv[4])
+
+
+
 
 
 ######case1 orderer #########################
