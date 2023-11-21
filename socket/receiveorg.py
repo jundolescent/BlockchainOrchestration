@@ -38,3 +38,5 @@ with sock,sock.makefile('rb') as clientfile:
         # socket was closed early.
         print('Incomplete')
         break 
+
+sock.close()

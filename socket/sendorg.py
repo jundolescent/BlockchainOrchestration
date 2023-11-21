@@ -36,3 +36,5 @@ while True:
         print('Done.')
 
     break
+
+sock.close()
