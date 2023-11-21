@@ -9,7 +9,7 @@ ip = sys.argv[1]
 sock = socket(AF_INET, SOCK_STREAM)
 sock.bind((ip,5000))
 sock.listen(1)
-materials = ['organizations', 'channel-artifacts', 'bin', 'configtx', 'system-genesis-block']
+materials = ['organizations', 'channel-artifacts', 'configtx', 'system-genesis-block']
 while True:
     print('Waiting for a client...')
     client,address = sock.accept()
