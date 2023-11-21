@@ -38,4 +38,9 @@ Deployment:
               - 'peer0.org3'
               - 'peer1.org3'
               - 'orderer3'
+      ###########################
+      ## type of chaincode 
+      ###########################  
+      chaincode: 'fabcar'
+
 

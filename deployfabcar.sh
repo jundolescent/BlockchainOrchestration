@@ -1,5 +1,5 @@
  #!/bin/bash
-docker exec cli peer lifecycle chaincode package fabcar.tar.gz --lang node --path /opt/gopath/src/github.com/hyperledger/fabric/peer/caliper-benchmarks/src/fabric/samples/fabcar/nodepayload100 --label fabcar
+docker exec cli peer lifecycle chaincode package fabcar.tar.gz --lang golang --path /opt/gopath/src/github.com/hyperledger/fabric/peer/caliper-benchmarks/src/fabric/samples/fabcar/go --label fabcar
 
 docker exec cli peer lifecycle chaincode install fabcar.tar.gz
 
