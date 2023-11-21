@@ -31,7 +31,7 @@ for org in range(2, n_org + 1):
                   -e CORE_PEER_ADDRESS=peer{}.org{}.example.com:{} \
                   -e CORE_PEER_LOCALMSPID="Org{}MSP" \
                   -e CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/org{}.example.com/peers/peer{}.org{}.example.com/tls/ca.crt \
-                  cli peer lifecycle chaincode install {}.tar.gz'.format(org, org, peer, org, peer_port, org, org, peer, org))
+                  cli peer lifecycle chaincode install {}.tar.gz'.format(org, org, peer, org, peer_port, org, org, peer, org, chaincode))
         
 
 os.system('docker exec cli peer lifecycle chaincode queryinstalled')
@@ -61,7 +61,7 @@ for org in range(2, n_org + 1):
 head_commit = 'docker exec cli peer lifecycle chaincode commit \
           -o orderer.example.com:7050 \
           --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem '
-tail_commit = '--channelID channel1 --name {} --version 1 --sequence 1'
+tail_commit = '--channelID channel1 --name {} --version 1 --sequence 1'.format(chaincode)
 temp = '--peerAddresses peer0.org1.example.com:8100 \
           --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt '
 

@@ -53,7 +53,7 @@ for org in range(2,n_org + 1):
             -profile TwoOrgsChannel \
             -outputAnchorPeersUpdate ./channel-artifacts/Org{}MSPanchors.tx \
             -channelID channel1 \
-            -asOrg Org{}MSP'.format(org))
+            -asOrg Org{}MSP'.format(org, org))
     os.system('docker exec \
               -e CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/org{}.example.com/users/Admin@org{}.example.com/msp \
               -e CORE_PEER_ADDRESS=peer0.org{}.example.com:{} \
