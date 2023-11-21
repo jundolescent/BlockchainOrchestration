@@ -7,5 +7,5 @@ docker volume rm $(docker volume ls -qf dangling=true)
 
 rm -rf ./channel-artifacts
 rm -rf ./system-genesis-block
-rm -rf ./organizations/peerOrganizaitons
+rm -rf ./organizations/peerOrganizations
 rm -rf ./organizations/ordererOrganizations

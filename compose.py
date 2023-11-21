@@ -80,7 +80,7 @@ for i in range(0,n_orderer):
     environment.append(general_cluster_clientprivatekey)
     environment.append(general_cluster_rootcas)
 
-    orderer_dict = {'version': '3.7', 'volumes':{container_name:{}},'networks':{'test':{'name':'testnet', 'external':'true'}}, \
+    orderer_dict = {'version': '3.7', 'volumes':{container_name:{}},'networks':{'test':{'name':'testnet', 'external':True}}, \
                     'services': {orderer_name:{'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
                                             'volumes':volumes,'command':command,'ports':ports,'networks':networks}}}
 
@@ -173,7 +173,7 @@ for o in range(1,n_org +1):
         environment.append(peer_localmspid)
         environment.append(operations_listenaddress)
 
-        peer_dict = {'version': '3.7', 'volumes':{container_name:{}}, 'networks':{'test':{'name':'testnet', 'external':'true'}}, \
+        peer_dict = {'version': '3.7', 'volumes':{container_name:{}}, 'networks':{'test':{'name':'testnet', 'external':True}}, \
                         'services': {peer_name:{'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
                                                 'volumes':volumes,'command':command,'ports':ports,'networks':networks}}}
 
@@ -212,7 +212,7 @@ environment.append('CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledg
 
 
 
-peer_dict = {'version': '3.7', 'networks':{'test':{'name':'testnet', 'external':'true'}}, \
+peer_dict = {'version': '3.7', 'networks':{'test':{'name':'testnet', 'external':True}}, \
                 'services': {peer_name:{'container_name':'cli','image':image, 'tty':True, 'stdin_open':True, 'environment':environment,'working_dir':working_dir,\
                                         'volumes':volumes,'command':command,'networks':networks}}}
 
