@@ -1,8 +1,8 @@
 #!/bin/bash
 
-python3 cryptoconfig.py $1 $2 $3
-python3 configuration.py $1 $2 $3
-python3 compose.py $1 $2 $3
+python3 cryptoconfig.py 
+python3 configuration.py 
+python3 compose.py 
 
 ./bin/cryptogen generate --config=./organizations/cryptogen/crypto-config.yaml --output=organizations
 export FABRIC_CFG_PATH=${PWD}/configtx

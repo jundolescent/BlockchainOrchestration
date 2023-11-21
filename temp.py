@@ -3,6 +3,12 @@ import sys
 
 
 ##### the number of orderer, the number of organization #########
+#n_orderer = int(sys.argv[1])
+#n_org = int(sys.argv[2])
+#n_peer = int(sys.argv[3])
+
+##### location of peer node #################
+##### the number of orderer, the number of organization #########
 ##### location of peer node #################
 with open('./NodeDeployment.yaml') as f:
     deployment = yaml.load(f, Loader=yaml.FullLoader)
@@ -17,16 +23,6 @@ for i in range(0, n_server):
     server_list.append(deployment['Deployment']['deployment'][i]['configuration'])
 
 print(server_list)
-for index, server in enumerate(server_list):
-    volumes = {}
-    if index == 0:
-        volumes['cli'] = {}
-    for node in server:
-        volumes['{}.example.com'.format(node)] = {}
-
-    head_dict = {'version': '3.7', 'volumes':volumes,'networks':{'test':{'name':'testnet', 'external':True}}}
-    with open('./docker/docker-compose-{}.yaml'.format(index), 'w') as f:
-        yaml.dump(head_dict,f,sort_keys=False)
 
 
 
@@ -101,20 +97,13 @@ for i in range(0,n_orderer):
     environment.append(general_cluster_clientprivatekey)
     environment.append(general_cluster_rootcas)
 
-
-
-    #select server
-    for index, server in enumerate(server_list):
-        for node in server:
-            if orderer_name.replace('.example.com','') == node:
-                print('hi')
-                orderer_dict = {
+    orderer_dict = {'version': '3.7', 'volumes':{container_name:{}},'networks':{'test':{'name':'testnet', 'external':True}}, \
                     'services': {orderer_name:{'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
-                                            'volumes':volumes,'command':command,'ports':ports,'networks':networks}}
-                                            }
-                with open('./docker/docker-compose-{}.yaml'.format(index), 'a') as f:
-                    yaml.dump(orderer_dict,f,sort_keys=False)
+                                            'volumes':volumes,'command':command,'ports':ports,'networks':networks}}}
 
+
+    with open('docker/docker-compose-{}.yaml'.format(orderer_name), 'w') as f:
+        yaml.dump(orderer_dict,f,sort_keys=False)
 
 
 
@@ -201,29 +190,12 @@ for o in range(1,n_org +1):
         environment.append(peer_localmspid)
         environment.append(operations_listenaddress)
 
+        peer_dict = {'version': '3.7', 'volumes':{container_name:{}}, 'networks':{'test':{'name':'testnet', 'external':True}}, \
+                        'services': {peer_name:{'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
+                                                'volumes':volumes,'command':command,'ports':ports,'networks':networks}}}
 
-
-        #select server
-        for index, server in enumerate(server_list):
-            for node in server:
-                if peer_name.replace('.example.com','') == node:
-                    print('hi')
-                    with open('./docker/docker-compose-{}.yaml'.format(index)) as f:
-                        service = yaml.load(f, Loader=yaml.FullLoader)
-                        service['services'][peer_name] = {'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
-                                                'volumes':volumes,'command':command,'ports':ports,'networks':networks}
-
-                    with open('./docker/docker-compose-{}.yaml'.format(index), 'w') as f:
-                        yaml.dump(service,f,sort_keys=False)
-
-
-
-        #peer_dict = {'version': '3.7', 'volumes':{container_name:{}}, 'networks':{'test':{'name':'testnet', 'external':True}}, \
-                        #'services': {peer_name:{'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
-                                      #          'volumes':volumes,'command':command,'ports':ports,'networks':networks}}}
-
-        #with open('docker/docker-compose-{}.yaml'.format(peer_name), 'w') as f:
-        #    yaml.dump(peer_dict,f,sort_keys=False)
+        with open('docker/docker-compose-{}.yaml'.format(peer_name), 'w') as f:
+            yaml.dump(peer_dict,f,sort_keys=False)
 
 
 #########cli part #########################
@@ -261,12 +233,6 @@ peer_dict = {'version': '3.7', 'networks':{'test':{'name':'testnet', 'external':
                 'services': {peer_name:{'container_name':'cli','image':image, 'tty':True, 'stdin_open':True, 'environment':environment,'working_dir':working_dir,\
                                         'volumes':volumes,'command':command,'networks':networks}}}
 
+with open('docker/docker-compose-cli.yaml', 'w') as f:
+    yaml.dump(peer_dict,f,sort_keys=False)
 
-
-with open('./docker/docker-compose-0.yaml') as f:
-    service = yaml.load(f, Loader=yaml.FullLoader)
-    service['services'][peer_name] = {'container_name':'cli','image':image, 'tty':True, 'stdin_open':True, 'environment':environment,'working_dir':working_dir,\
-                                        'volumes':volumes,'command':command,'networks':networks}
-
-with open('./docker/docker-compose-0.yaml', 'w') as f:
-    yaml.dump(service,f,sort_keys=False)

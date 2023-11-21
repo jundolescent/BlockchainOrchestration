@@ -19,9 +19,17 @@ print(configtx['Profiles'])
 
 
 
-n_orderer = int(sys.argv[1])
-n_org = int(sys.argv[2])
-n_peer = int(sys.argv[3])
+#n_orderer = int(sys.argv[1])
+#n_org = int(sys.argv[2])
+#n_peer = int(sys.argv[3])
+##### the number of orderer, the number of organization #########
+##### location of peer node #################
+with open('./NodeDeployment.yaml') as f:
+    deployment = yaml.load(f, Loader=yaml.FullLoader)
+
+n_orderer = deployment['Deployment']['orderer']
+n_org = deployment['Deployment']['organization']
+n_peer = deployment['Deployment']['peer']
 
 
 
