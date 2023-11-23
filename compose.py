@@ -1,6 +1,6 @@
 import yaml
 import sys
-
+import os
 
 ##### the number of orderer, the number of organization #########
 ##### location of peer node #################
@@ -120,7 +120,8 @@ for i in range(0,n_orderer):
                     yaml.dump(orderer_dict,f,sort_keys=False)
 
 
-
+if os.path.isdir('docker') == False:
+    os.system('mkdir docker')
 
 ######case2 peer #########################
 for o in range(1,n_org +1):
