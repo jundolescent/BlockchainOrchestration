@@ -17,7 +17,7 @@ extra_hosts = []
 for i in range(0, n_server):
     server_list.append(deployment['Deployment']['deployment'][i]['configuration'])
     for j in deployment['Deployment']['deployment'][i]['configuration']:
-        extra_hosts.append('{}.exmaple.com:{}'.format(j,deployment['Deployment']['deployment'][i]['ip']))
+        extra_hosts.append('{}.example.com:{}'.format(j,deployment['Deployment']['deployment'][i]['ip']))
 
 
 
