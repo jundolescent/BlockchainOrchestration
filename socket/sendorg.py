@@ -7,7 +7,7 @@ CHUNKSIZE = 1_000_000
 ip = sys.argv[1]
 
 sock = socket(AF_INET, SOCK_STREAM)
-sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+#sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind((ip,5000))
 sock.listen(1)
 materials = ['organizations', 'channel-artifacts', 'configtx', 'system-genesis-block']
