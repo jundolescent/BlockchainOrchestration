@@ -5,7 +5,7 @@ import subprocess
 import time
 
 ip = sys.argv[1]
-port = sys.argv[2]
+port = int(sys.argv[2])
 clientSock = socket(AF_INET, SOCK_STREAM)
 clientSock.connect((ip, port))
 

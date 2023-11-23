@@ -5,7 +5,7 @@ import os
 CHUNKSIZE = 1_000_000
 
 ip = sys.argv[1]
-port = sys.argv[2]
+port = int(sys.argv[2])
 sock = socket(AF_INET, SOCK_STREAM)
 #sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind((ip,port))
