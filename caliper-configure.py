@@ -42,6 +42,7 @@ print(network_config['organizations'][1])
 print(network_config['organizations'][2])
 
 
+
 with open('./caliper-benchmarks/networks/networkConfig.yaml', 'w') as f:
     yaml.dump(network_config,f,sort_keys=False)
 
