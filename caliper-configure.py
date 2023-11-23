@@ -31,9 +31,9 @@ del network_config['organizations'][1]
 for org in range(2, n_org + 1):
 
     temp_org = {'mspid': 'Org{}MSP'.format(org), \
-                'identities': {'certificates': [{'name': 'User{}'.format(org), 'clientPrivateKey':{'path':'../organizations/peerOrganizations/org{}.example.com/users/User{}@org{}.example.com/msp/keystore/priv_sk'.format(org,org,org)},\
-                                                 'clientSignedCert':{'path':'../organizations/peerOrganizations/org{}.example.com/users/User{}@org{}.example.com/msp/signcerts/User{}@org{}.example.com-cert.pem'.format(org,org,org,org,org)}}]}, \
-                'connectionProfile': {'path':'../organizations/peerOrganizations/org{}.example.com/connection-org{}.json'.format(org, org), 'discover': True}}
+                'identities': {'certificates': [{'name': 'User1', 'clientPrivateKey':{'path':'../organizations/peerOrganizations/org{}.example.com/users/User1@org{}.example.com/msp/keystore/priv_sk'.format(org,org)},\
+                                                 'clientSignedCert':{'path':'../organizations/peerOrganizations/org{}.example.com/users/User1@org{}.example.com/msp/signcerts/User1@org{}.example.com-cert.pem'.format(org,org,org)}}]}, \
+                'connectionProfile': {'path':'../organizations/peerOrganizations/org{}.example.com/connection-org{}.yaml'.format(org, org), 'discover': True}}
     network_config['organizations'].append(temp_org)
 
 
@@ -100,7 +100,7 @@ for org in range(1, n_org + 1):
                                                                                 'tlsCACerts':{'pem':capem},\
                                                                                 'httpOptions':{'verify': False}}}
 
-    with open('test{}.yaml'.format(org), 'w') as f:
+    with open('./organizations/peerOrganizations/org{}.example.com/connection-org{}.yaml'.format(org, org), 'w') as f:
         yaml.dump(ccp_config,f,sort_keys=False)
 # name: test-network-org${ORG}
 # version: 1.0.0
