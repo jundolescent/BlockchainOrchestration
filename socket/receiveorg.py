@@ -8,9 +8,9 @@ CHUNKSIZE = 1_000_000
 os.makedirs('client',exist_ok=True)
 
 ip = sys.argv[1]
-
+port = sys.argv[2]
 sock = socket(AF_INET, SOCK_STREAM)
-sock.connect((ip,5000))
+sock.connect((ip,port))
 with sock,sock.makefile('rb') as clientfile:
     while True:
         raw = clientfile.readline()

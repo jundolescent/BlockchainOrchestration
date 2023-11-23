@@ -5,9 +5,9 @@ import subprocess
 import time
 
 ip = sys.argv[1]
-
+port = sys.argv[2]
 serverSock = socket(AF_INET, SOCK_STREAM)
-serverSock.bind((ip, 8080))
+serverSock.bind((ip, port))
 serverSock.listen(1)
 
 subprocess.call("./dockerswarm.sh %s" % ip, shell=True)
