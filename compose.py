@@ -17,7 +17,7 @@ extra_hosts = []
 for i in range(0, n_server):
     server_list.append(deployment['Deployment']['deployment'][i]['configuration'])
     for j in deployment['Deployment']['deployment'][i]['configuration']:
-        extra_hosts.append({'{}.exmaple.com'.format(j) : deployment['Deployment']['deployment'][i]['ip']})
+        extra_hosts.append('{}.exmaple.com:{}'.format(j,deployment['Deployment']['deployment'][i]['ip']))
 
 
 
@@ -111,7 +111,6 @@ for i in range(0,n_orderer):
     for index, server in enumerate(server_list):
         for node in server:
             if orderer_name.replace('.example.com','') == node:
-                print('hi')
                 orderer_dict = {
                     'services': {orderer_name:{'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
                                             'volumes':volumes,'command':command,'ports':ports,'networks':networks}}

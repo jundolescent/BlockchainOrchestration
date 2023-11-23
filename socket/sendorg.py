@@ -10,7 +10,7 @@ sock = socket(AF_INET, SOCK_STREAM)
 #sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind((ip,port))
 sock.listen(1)
-materials = ['organizations', 'channel-artifacts', 'configtx', 'system-genesis-block']
+materials = ['organizations', 'channel-artifacts', 'configtx', 'system-genesis-block', 'docker']
 while True:
     print('Waiting for a client...')
     client,address = sock.accept()
