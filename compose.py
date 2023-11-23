@@ -195,6 +195,7 @@ for o in range(1,n_org +1):
         environment.append(peer_profile_enabled)
         environment.append(peer_tls_cert_file)
         environment.append(peer_tls_rootcert_file)
+        environment.append(peer_tls_key_file)
         environment.append(peer_id)
         environment.append(peer_address)
         environment.append(peer_listenaddress)
