@@ -12,6 +12,13 @@ n_org = deployment['Deployment']['organization']
 n_peer = deployment['Deployment']['peer']
 n_server = deployment['Deployment']['server']
 
+server_list = []
+server_ip = {}
+for i in range(0, n_server):
+    server_list.append(deployment['Deployment']['deployment'][i]['configuration'])
+    for j in deployment['Deployment']['deployment'][i]['configuration']:
+        server_ip[j] = deployment['Deployment']['deployment'][i]['ip']
+
 
 ##### networkConfig for caliper-benchmarks ########
 with open('./networkConfig.yaml') as f:
