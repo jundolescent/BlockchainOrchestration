@@ -129,7 +129,7 @@ for o in range(1,n_org +1):
         peer_port = 8000 + o * 100 ## 8100, 8200. 8300
         peer_port = str(peer_port + p)
         chaincode_port = str(20000 + o * 100 + p)
-        operation_port = str(40000 + o * 100 + p)
+        operation_port = str(32000 + o * 100 + p)
         container_name = peer_name
         image = 'hyperledger/fabric-peer:2.2.5'
 

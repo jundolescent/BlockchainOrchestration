@@ -1,6 +1,6 @@
 import yaml
 import sys
-
+import os
 class NoAliasDumper(yaml.Dumper):
     def ignore_aliases(self, data):
         return True
@@ -24,6 +24,18 @@ with open('./NodeDeployment.yaml') as f:
 n_orderer = deployment['Deployment']['orderer']
 n_org = deployment['Deployment']['organization']
 n_peer = deployment['Deployment']['peer']
+
+
+
+server_ip = {}
+for server_list in deployment['Deployment']['deployment']:
+
+    temp = server_list['configuration'] 
+    for i in temp:
+        server_ip[i] = server_list['ip']
+        os.system('sh ./manage-etc-hosts.sh add {} {}.example.com'.format(server_list['ip'], i))
+
+print(server_ip)
 
 #####initialize orderer,peer list########
 
