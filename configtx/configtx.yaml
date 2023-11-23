@@ -15,29 +15,7 @@ Organizations:
       Rule: OR('OrdererMSP.admin')
   OrdererEndpoints:
   - orderer.example.com:7050
-  - orderer2.example.com:7051
-  - orderer3.example.com:7052
 - &id008
-  Name: Org3MSP
-  ID: Org3MSP
-  MSPDir: ../organizations/peerOrganizations/org3.example.com/msp
-  Policies:
-    Readers:
-      Type: Signature
-      Rule: OR('Org3MSP.admin', 'Org3MSP.peer', 'Org3MSP.client')
-    Writers:
-      Type: Signature
-      Rule: OR('Org3MSP.admin', 'Org3MSP.client')
-    Admins:
-      Type: Signature
-      Rule: OR('Org3MSP.admin')
-    Endorsement:
-      Type: Signature
-      Rule: OR('Org3MSP.peer')
-  AnchorPeers:
-  - Host: peer0.org3.example.com
-    Port: 8300
-- &id009
   Name: Org1MSP
   ID: Org1MSP
   MSPDir: ../organizations/peerOrganizations/org1.example.com/msp
@@ -57,46 +35,6 @@ Organizations:
   AnchorPeers:
   - Host: peer0.org1.example.com
     Port: 8100
-- &id010
-  Name: Org2MSP
-  ID: Org2MSP
-  MSPDir: ../organizations/peerOrganizations/org2.example.com/msp
-  Policies:
-    Readers:
-      Type: Signature
-      Rule: OR('Org2MSP.admin', 'Org2MSP.peer', 'Org2MSP.client')
-    Writers:
-      Type: Signature
-      Rule: OR('Org2MSP.admin', 'Org2MSP.client')
-    Admins:
-      Type: Signature
-      Rule: OR('Org2MSP.admin')
-    Endorsement:
-      Type: Signature
-      Rule: OR('Org2MSP.peer')
-  AnchorPeers:
-  - Host: peer0.org2.example.com
-    Port: 8200
-- &id011
-  Name: Org3MSP
-  ID: Org3MSP
-  MSPDir: ../organizations/peerOrganizations/org3.example.com/msp
-  Policies:
-    Readers:
-      Type: Signature
-      Rule: OR('Org3MSP.admin', 'Org3MSP.peer', 'Org3MSP.client')
-    Writers:
-      Type: Signature
-      Rule: OR('Org3MSP.admin', 'Org3MSP.client')
-    Admins:
-      Type: Signature
-      Rule: OR('Org3MSP.admin')
-    Endorsement:
-      Type: Signature
-      Rule: OR('Org3MSP.peer')
-  AnchorPeers:
-  - Host: peer0.org3.example.com
-    Port: 8300
 Capabilities:
   Channel:
     V2_0: true
@@ -106,7 +44,7 @@ Capabilities:
     V2_0: true
 Application:
   Organizations: null
-  Policies: &id012
+  Policies: &id009
     Readers:
       Type: ImplicitMeta
       Rule: ANY Readers
@@ -128,22 +66,12 @@ Orderer:
   OrdererType: etcdraft
   Addresses: &id003
   - orderer.example.com:7050
-  - orderer2.example.com:7051
-  - orderer3.example.com:7052
   EtcdRaft: &id004
     Consenters:
     - Host: orderer.example.com
       Port: 7050
       ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
       ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-    - Host: orderer2.example.com
-      Port: 7051
-      ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
-      ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
-    - Host: orderer3.example.com
-      Port: 7052
-      ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
-      ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
   BatchTimeout: 0.5s
   BatchSize: &id005
     MaxMessageCount: 50
@@ -195,9 +123,6 @@ Profiles:
       SampleConsortium:
         Organizations:
         - *id008
-        - *id009
-        - *id010
-        - *id011
   TwoOrgsChannel:
     Policies: *id001
     Capabilities: *id002
@@ -205,9 +130,6 @@ Profiles:
     Application:
       Organizations:
       - *id008
-      - *id009
-      - *id010
-      - *id011
-      Policies: *id012
+      Policies: *id009
       Capabilities:
         V2_0: true

@@ -76,12 +76,15 @@ for i in orderer_list:
 
 print(configtx['Organizations'][2])
 #initialize
+del configtx['Organizations'][3]
 del configtx['Organizations'][2]
 del configtx['Organizations'][1]
 
+del configtx['Profiles']['TwoOrgsOrdererGenesis']['Consortiums']['SampleConsortium']['Organizations'][2]
 del configtx['Profiles']['TwoOrgsOrdererGenesis']['Consortiums']['SampleConsortium']['Organizations'][1]
 del configtx['Profiles']['TwoOrgsOrdererGenesis']['Consortiums']['SampleConsortium']['Organizations'][0]
 
+del configtx['Profiles']['TwoOrgsChannel']['Application']['Organizations'][2]
 del configtx['Profiles']['TwoOrgsChannel']['Application']['Organizations'][1]
 del configtx['Profiles']['TwoOrgsChannel']['Application']['Organizations'][0]
 

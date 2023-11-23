@@ -1,6 +1,6 @@
 caliper:
   fabric:
     gateway:
-      localhost: false
+      localhost: true
       enabled: true
       discovery: true

@@ -35,9 +35,7 @@ for org in range(2, n_org + 1):
     network_config['organizations'].append(temp_org)
 
 
-print(network_config['organizations'][0])
-print(network_config['organizations'][1])
-print(network_config['organizations'][2])
+
 
 
 
@@ -68,6 +66,9 @@ for org in range(1, n_org + 1):
         ccp_config = yaml.load(f, Loader=yaml.FullLoader)
     f2 = open('organizations/peerOrganizations/org{}.example.com/tlsca/tlsca.org{}.example.com-cert.pem'.format(org,org),'r')
     peerpem = f2.readlines()
+    pem = ''
+    for sen in peerpem:
+        pem = pem + sen
     f2.close()
     print(peerpem)
     f3 = open('organizations/peerOrganizations/org{}.example.com/ca/ca.org{}.example.com-cert.pem'.format(org,org),'r')
@@ -93,7 +94,7 @@ for org in range(1, n_org + 1):
         ccp_config['organizations']['Org{}'.format(org)]['peers'].append(peer_address)
 
         ccp_config['peers']['peer{}.org{}.example.com'.format(peer,org)] = {'url':'grpcs://{}:{}'.format(IP, peer_port), \
-                                                                            'tlsCACerts':{'pem':'{}\n'.format(peerpem)}, \
+                                                                            'tlsCACerts':{'pem':'{}\n'.format(pem)}, \
                                                                             'grpcOptions':{'ssl-target-name-override': 'peer{}.org{}.example.com'.format(peer, org),
                                                                                             'hostnameOverride': 'peer{}.org{}.example.com'.format(peer, org)}}
 
