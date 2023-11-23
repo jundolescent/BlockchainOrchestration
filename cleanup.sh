@@ -9,3 +9,4 @@ rm -rf ./channel-artifacts
 rm -rf ./system-genesis-block
 rm -rf ./organizations/peerOrganizations
 rm -rf ./organizations/ordererOrganizations
+rm -rf ./docker/*

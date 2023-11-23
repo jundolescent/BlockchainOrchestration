@@ -19,6 +19,7 @@ for server_list in deployment['Deployment']['deployment']:
     temp = server_list['configuration'] 
     for i in temp:
         server_ip[i] = server_list['ip']
+        os.system('sh ./manage-etc-hosts.sh add {} {}.example.com'.format(server_list['ip'], i))
 
 print(server_ip)
 
@@ -51,6 +52,10 @@ with open('./caliper-benchmarks/networks/networkConfig.yaml', 'w') as f:
 ##### mv start file to caliper-benchmarks ####
 if os.path.isfile('startfabcar.sh'):
     os.system('mv startfabcar.sh ./caliper-benchmarks')
+
+##### mv start file to caliper-benchmarks ####
+if os.path.isfile('caliper.yaml'):
+    os.system('mv caliper.yaml ./caliper-benchmarks')
 
 ##### generate connection profile ########
 

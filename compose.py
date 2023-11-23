@@ -13,10 +13,14 @@ n_peer = deployment['Deployment']['peer']
 n_server = deployment['Deployment']['server']
 
 server_list = []
+extra_hosts = []
 for i in range(0, n_server):
     server_list.append(deployment['Deployment']['deployment'][i]['configuration'])
+    for j in deployment['Deployment']['deployment'][i]['configuration']:
+        extra_hosts.append({'{}.exmaple.com'.format(j) : deployment['Deployment']['deployment'][i]['ip']})
 
-print(server_list)
+
+
 for index, server in enumerate(server_list):
     volumes = {}
     if index == 0:
@@ -153,7 +157,7 @@ for o in range(1,n_org +1):
         networks = []
         networks.append('test')
 
-        extra_hosts = []
+
 
         environment = []
 
@@ -202,7 +206,6 @@ for o in range(1,n_org +1):
         environment.append(operations_listenaddress)
 
 
-
         #select server
         for index, server in enumerate(server_list):
             for node in server:
@@ -211,7 +214,8 @@ for o in range(1,n_org +1):
                     with open('./docker/docker-compose-{}.yaml'.format(index)) as f:
                         service = yaml.load(f, Loader=yaml.FullLoader)
                         service['services'][peer_name] = {'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
-                                                'volumes':volumes,'command':command,'ports':ports,'networks':networks}
+                                                'volumes':volumes,'command':command,\
+                                                'extra_hosts': extra_hosts, 'ports':ports,'networks':networks}
 
                     with open('./docker/docker-compose-{}.yaml'.format(index), 'w') as f:
                         yaml.dump(service,f,sort_keys=False)
