@@ -39,14 +39,3 @@ time.sleep(3)
 serverSock.close()
 connectionSock.close()
 
-number = int(ip[-1]) + 1
-ip2 = ip[0:-1] + str(number)
-
-subprocess.call("./etchosts.sh %s %s" % (ip, ip2), shell=True)
-subprocess.call("./generateccp.sh %s %s" % (ip, ip2), shell=True)
-
-time.sleep(5)
-subprocess.call("docker-compose -f ./docker/docker-compose-host1.yaml up -d", shell=True)
-time.sleep(3)
-subprocess.call("./channelup.sh", shell=True)
-subprocess.call("./deploypayload.sh", shell=True)

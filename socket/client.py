@@ -35,6 +35,3 @@ clientSock.close()
 
 
 subprocess.call("sh ./hello.sh", shell=True)
-
-time.sleep(5)
-subprocess.call("docker-compose -f ./docker/docker-compose-host2.yaml up -d", shell=True)
