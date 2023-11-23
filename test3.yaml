@@ -1,0 +1,102 @@
+name: test-network-org3
+version: 1.0.0
+client:
+  organization: Org3
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Org3:
+    mspid: Org3MSP
+    peers:
+    - peer0.org3.example.com
+    - peer1.org3.example.com
+    certificateAuthorities:
+    - ca.org3.example.com
+peers:
+  peer0.org3.example.com:
+    url: grpcs://10.0.0.3:8300
+    tlsCACerts:
+      pem: '[''-----BEGIN CERTIFICATE-----\n'', ''MIICWTCCAf6gAwIBAgIRAMsYdRst2wrR5TQYOCn3s5cwCgYIKoZIzj0EAwIwdjEL\n'',
+        ''MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\n'', ''cmFuY2lzY28xGTAXBgNVBAoTEG9yZzMuZXhhbXBsZS5jb20xHzAdBgNVBAMTFnRs\n'',
+        ''c2NhLm9yZzMuZXhhbXBsZS5jb20wHhcNMjMxMTIyMDc0MjAwWhcNMzMxMTE5MDc0\n'', ''MjAwWjB2MQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UE\n'',
+        ''BxMNU2FuIEZyYW5jaXNjbzEZMBcGA1UEChMQb3JnMy5leGFtcGxlLmNvbTEfMB0G\n'', ''A1UEAxMWdGxzY2Eub3JnMy5leGFtcGxlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49\n'',
+        ''AwEHA0IABJ2X4uAJ/M28yYv63PLJCP96Az4etzV5sh74L3aj1OnRm8TFdfYc/vD1\n'', ''oCEASmGeiFkSgAS8folQ1Sqte85hcdejbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNV\n'',
+        ''HSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNV\n'', ''HQ4EIgQg2lwCtcyDK+Bmp5Daz/GnG9C+rIldtAUisxg37oEwP4UwCgYIKoZIzj0E\n'',
+        ''AwIDSQAwRgIhALWbZJJmFLSb8a5AwfHGVvoCHpjHyBnbn/4NCLxJ1iIyAiEA3cVT\n'', ''57StFaU9TCXnXGqiISn+8BQXLweZsP9/x8v6pUg=\n'',
+        ''-----END CERTIFICATE-----\n'']
+
+        '
+    grpcOptions:
+      ssl-target-name-override: peer0.org3.example.com
+      hostnameOverride: peer0.org3.example.com
+  peer1.org3.example.com:
+    url: grpcs://10.0.0.3:8301
+    tlsCACerts:
+      pem: '[''-----BEGIN CERTIFICATE-----\n'', ''MIICWTCCAf6gAwIBAgIRAMsYdRst2wrR5TQYOCn3s5cwCgYIKoZIzj0EAwIwdjEL\n'',
+        ''MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\n'', ''cmFuY2lzY28xGTAXBgNVBAoTEG9yZzMuZXhhbXBsZS5jb20xHzAdBgNVBAMTFnRs\n'',
+        ''c2NhLm9yZzMuZXhhbXBsZS5jb20wHhcNMjMxMTIyMDc0MjAwWhcNMzMxMTE5MDc0\n'', ''MjAwWjB2MQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UE\n'',
+        ''BxMNU2FuIEZyYW5jaXNjbzEZMBcGA1UEChMQb3JnMy5leGFtcGxlLmNvbTEfMB0G\n'', ''A1UEAxMWdGxzY2Eub3JnMy5leGFtcGxlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49\n'',
+        ''AwEHA0IABJ2X4uAJ/M28yYv63PLJCP96Az4etzV5sh74L3aj1OnRm8TFdfYc/vD1\n'', ''oCEASmGeiFkSgAS8folQ1Sqte85hcdejbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNV\n'',
+        ''HSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNV\n'', ''HQ4EIgQg2lwCtcyDK+Bmp5Daz/GnG9C+rIldtAUisxg37oEwP4UwCgYIKoZIzj0E\n'',
+        ''AwIDSQAwRgIhALWbZJJmFLSb8a5AwfHGVvoCHpjHyBnbn/4NCLxJ1iIyAiEA3cVT\n'', ''57StFaU9TCXnXGqiISn+8BQXLweZsP9/x8v6pUg=\n'',
+        ''-----END CERTIFICATE-----\n'']
+
+        '
+    grpcOptions:
+      ssl-target-name-override: peer1.org3.example.com
+      hostnameOverride: peer1.org3.example.com
+certificateAuthorities:
+  ca.org3.example.com:
+    url: http://localhost:10003
+    caName: ca-org3
+    tlsCACerts:
+      pem:
+      - '-----BEGIN CERTIFICATE-----
+
+        '
+      - 'MIICUTCCAfegAwIBAgIQeOHFitJyQkiR+IE7FhvB2TAKBggqhkjOPQQDAjBzMQsw
+
+        '
+      - 'CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+
+        '
+      - 'YW5jaXNjbzEZMBcGA1UEChMQb3JnMy5leGFtcGxlLmNvbTEcMBoGA1UEAxMTY2Eu
+
+        '
+      - 'b3JnMy5leGFtcGxlLmNvbTAeFw0yMzExMjIwNzQyMDBaFw0zMzExMTkwNzQyMDBa
+
+        '
+      - 'MHMxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T
+
+        '
+      - 'YW4gRnJhbmNpc2NvMRkwFwYDVQQKExBvcmczLmV4YW1wbGUuY29tMRwwGgYDVQQD
+
+        '
+      - 'ExNjYS5vcmczLmV4YW1wbGUuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE
+
+        '
+      - 'JHNcNH8BH1ioqZGmdjJspbe+bpLWsRBdnHh+7sQEORJldBkCRVQAmaJN2KT0ULle
+
+        '
+      - 'EgquE4g9p6ipbW8Db+y47aNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQG
+
+        '
+      - 'CCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCAf
+
+        '
+      - 'MtqYx866cmsi/2QzWVYWCuQVFb1LkE3CWRsoaDSOMDAKBggqhkjOPQQDAgNIADBF
+
+        '
+      - 'AiEAsB0Uuf20DZHDxtWHPMpsv6xjQY8wHg5S336bY5I2oosCIHpn6lJ1bFseb8ab
+
+        '
+      - 'BfTMfkOWpGqsJ12toI65Q/yvGWGa
+
+        '
+      - '-----END CERTIFICATE-----
+
+        '
+    httpOptions:
+      verify: false

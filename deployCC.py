@@ -68,7 +68,7 @@ temp = '--peerAddresses peer0.org1.example.com:8100 \
 for org in range(2, n_org + 1):
     peer_port = 8000 + org * 100 ## 8100, 8200. 8300
     temp = temp + '--peerAddresses peer0.org{}.example.com:{} \
-          --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/org{}.example.com/peers/peer0.org{}.example.com/tls/ca.crt'.format(org, peer_port, org, org)
+          --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/org{}.example.com/peers/peer0.org{}.example.com/tls/ca.crt '.format(org, peer_port, org, org)
     
 commit_sentence = head_commit + temp + tail_commit
     

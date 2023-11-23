@@ -35,7 +35,7 @@ for org in range(2,n_org + 1):
                   cli peer channel join -b channel1.block'.format(org, org, peer, org, peer_port, org, org, peer, org))
 
 ### channel anchor update
-os.system('export FABRIC_CFG_PATH=${PWD}/configtx')
+os.system('export FABRIC_CFG_PATH=${{PWD}}/configtx'.format())
 os.system('./bin/configtxgen \
           -profile TwoOrgsChannel \
           -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx \
