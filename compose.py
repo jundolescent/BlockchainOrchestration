@@ -12,13 +12,28 @@ n_org = deployment['Deployment']['organization']
 n_peer = deployment['Deployment']['peer']
 n_server = deployment['Deployment']['server']
 
+# server_list = []
+# extra_hosts = []
+# for i in range(0, n_server):
+#     server_list.append(deployment['Deployment']['deployment'][i]['configuration'])
+#     for j in deployment['Deployment']['deployment'][i]['configuration']:
+#         extra_hosts.append('{}.example.com:{}'.format(j,deployment['Deployment']['deployment'][i]['ip']))
 server_list = []
 extra_hosts = []
+total = []
+total_hosts = []
 for i in range(0, n_server):
+    extra_hosts = []
     server_list.append(deployment['Deployment']['deployment'][i]['configuration'])
     for j in deployment['Deployment']['deployment'][i]['configuration']:
         extra_hosts.append('{}.example.com:{}'.format(j,deployment['Deployment']['deployment'][i]['ip']))
-
+        total.append('{}.example.com:{}'.format(j,deployment['Deployment']['deployment'][i]['ip']))
+    total_hosts.append(extra_hosts)
+#total_hosts = list(set(temp) - set(extra_hosts))
+result = []
+for j in total_hosts:
+    j = list(set(total) - set(j))
+    result.append(j)
 
 
 for index, server in enumerate(server_list):
@@ -207,16 +222,23 @@ for o in range(1,n_org +1):
         environment.append(operations_listenaddress)
 
 
+        re = 0
+        for index, i in enumerate(server_list):
+            for j in i:
+                na = peer_name.replace('.example.com', '')
+                if j == na:
+                    re = index
+        extra_host = result[re]
+
         #select server
         for index, server in enumerate(server_list):
             for node in server:
                 if peer_name.replace('.example.com','') == node:
-                    print('hi')
                     with open('./docker/docker-compose-{}.yaml'.format(index)) as f:
                         service = yaml.load(f, Loader=yaml.FullLoader)
                         service['services'][peer_name] = {'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
                                                 'volumes':volumes,'command':command,\
-                                                'extra_hosts': extra_hosts, 'ports':ports,'networks':networks}
+                                                'extra_hosts': extra_host, 'ports':ports,'networks':networks}
 
                     with open('./docker/docker-compose-{}.yaml'.format(index), 'w') as f:
                         yaml.dump(service,f,sort_keys=False)
