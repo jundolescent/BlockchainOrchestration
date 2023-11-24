@@ -62,7 +62,7 @@ for o in range(1, n_org + 1):
     port_list = []
     ca_port = 0
     for p in range(0, n_peer):
-        peer_name = 'peer{}.org{}'.format(o, p)
+        peer_name = 'peer{}.org{}'.format(p, o)
         peer_port = 8000 + o * 100 + p
         port_list.append(peer_port)
         ca_port = 10000 + o
