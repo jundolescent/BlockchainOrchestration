@@ -54,21 +54,8 @@ if os.path.isfile('caliper.yaml'):
 
 ##### generate connection profile ########
 
-# for i in range(0, n_server):
-#     for node in deployment['Deployment']['deployment']['configuration']:
-#         # peer0.org1, peer1.org1, orderer ...
-#         ip = deployment['Deployment']['deployment'][i]['ip']
-#         port_list = []
-#         if 'peer' in node:
-#             peer, org = node.split('.')
-#             peer_port = 8000 + int(org[0]) * 100 + int(peer[-1])
-#             port_list.append(peer_port)
-#             #only IP changes, yet keep in mind that the number of peer could be variable
-#     os.system('./generateccp.sh {} {} {} {} {}'.format())
+# should change peer & IP 
 
-
-#only IP changes, yet keep in mind that the number of peer could be variable
-print(server_ip)
 for o in range(1, n_org + 1):
     peer_name = ''
     peer_port = 0
