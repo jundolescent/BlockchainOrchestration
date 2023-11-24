@@ -33,7 +33,7 @@ for server_list in deployment['Deployment']['deployment']:
     temp = server_list['configuration'] 
     for i in temp:
         server_ip[i] = server_list['ip']
-        os.system('sh ./manage-etc-hosts.sh add {} {}.example.com'.format(server_list['ip'], i))
+        #os.system('sh ./manage-etc-hosts.sh add {} {}.example.com'.format(server_list['ip'], i))
 
 print(server_ip)
 
